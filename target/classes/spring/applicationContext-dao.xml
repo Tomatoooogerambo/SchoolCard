@@ -9,7 +9,7 @@
     <context:property-placeholder location="classpath:jdbc.properties"/>
 
     <!--扫描包-->
-    <context:component-scan base-package="njupt.colom.dao"/>
+    <context:component-scan base-package="com.njupt.dao"/>
 
     <!--配置好数据库源-->
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">

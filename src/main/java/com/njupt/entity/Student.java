@@ -1,4 +1,4 @@
-package njupt.colom.entity;
+package com.njupt.entity;
 
 /**
  * Created by 越 on 2018/4/27.
