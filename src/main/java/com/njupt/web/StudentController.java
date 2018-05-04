@@ -25,19 +25,19 @@ public class StudentController  {
      * 设置起始页面
      * @return
      */
-    @RequestMapping(value = "/index.html")
+    @RequestMapping(value = "/verifyCard")
     public String setLoginPage() {
-        return "start";
+        return "verifyCard";
     }
 
-    @RequestMapping(value = "/checkForm.html")
+    @RequestMapping(value = "/checkForm")
     public ModelAndView checkFormByMacNumber(HttpServletRequest request) {
         if(studentService.checkValidMacNumber(request.getParameter("macNumber"))) {
             Student student = studentService.getRecordByMacNuber(request.getParameter("macNumber"));
             request.getSession().setAttribute("student", student);
             return new ModelAndView("searchResult");
         }else{
-            return new ModelAndView("start","error","卡号不存在");
+            return new ModelAndView("verifyCard","error","卡号不存在");
         }
     }
 
