@@ -82,6 +82,18 @@
       <version>1.4</version>
     </dependency>
 
+    <!--用于短信网关的服务-->
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpcore</artifactId>
+      <version>4.4.3</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpclient</artifactId>
+      <version>4.5.1</version>
+    </dependency>
+
     <!--Web相关-->
     <dependency>
       <groupId>org.eclipse.jetty.orbit</groupId>
@@ -112,6 +124,12 @@
       <artifactId>log4j</artifactId>
       <version>1.2.17</version>
     </dependency>
+    <dependency>
+      <groupId>commons-logging</groupId>
+      <artifactId>commons-logging</artifactId>
+      <version>1.2</version>
+    </dependency>
+
   </dependencies>
 
   <build>

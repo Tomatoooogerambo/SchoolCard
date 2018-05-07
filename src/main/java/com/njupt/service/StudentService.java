@@ -78,4 +78,8 @@ public class StudentService {
         }
         return jsonArrayStudents;
     }
+
+    public Student getStudentRecordByMacNumber(String macNumber) {
+        return studentDao.getRecordByMacNumber(macNumber);
+    }
 }

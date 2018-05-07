@@ -11,6 +11,7 @@ public class Student {
     private String userId;
     private String macNumber;
     private boolean isLost;
+    private String telNumber;
 
     public String getName() {
         return name;
@@ -60,6 +61,14 @@ public class Student {
         isLost = lost;
     }
 
+    public String getTelNumber() {
+        return telNumber;
+    }
+
+    public void setTelNumber(String telNumber) {
+        this.telNumber = telNumber;
+    }
+
     @Override
     public String toString() {
         StringBuffer line = new StringBuffer();
@@ -68,7 +77,8 @@ public class Student {
                 "\n" + "major: " + getMajor() +
                 "\n" + "userId: " + getUserId() +
                 "\n" + "macNumber: " + getMacNumber() +
-                "\n" + "isLost: " + isLost());
+                "\n" + "isLost: " + isLost() +
+                "\n" + "telNumber: " + getTelNumber());
         return line.toString();
     }
 }

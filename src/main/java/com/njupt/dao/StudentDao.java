@@ -89,6 +89,7 @@ public class StudentDao {
                         student.setUserId(userId);
                         student.setMacNumber(resultSet.getString("mac_num"));
                         student.setLost(resultSet.getBoolean("isLost"));
+                        student.setTelNumber(resultSet.getString("telNum"));
                     }
                 }
         );
@@ -114,6 +115,7 @@ public class StudentDao {
                         student.setUserId(resultSet.getString("user_Id"));
                         student.setMacNumber(macNumber);
                         student.setLost(resultSet.getBoolean("isLost"));
+                        student.setTelNumber(resultSet.getString("telNum"));
                     }
                 }
         );
@@ -155,6 +157,7 @@ public class StudentDao {
                             student.setUserId(resultSet.getString("user_Id"));
                             student.setMacNumber(resultSet.getString("mac_num"));
                             student.setLost(resultSet.getBoolean("isLost"));
+                            student.setTelNumber(resultSet.getString("telNum"));
                             students.add(student);
                         }
                         return students;
