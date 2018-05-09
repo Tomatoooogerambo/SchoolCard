@@ -1,6 +1,9 @@
 package com.njupt.dao;
 
+import com.aliyuncs.dysmsapi.model.v20170525.SendSmsResponse;
+import com.aliyuncs.exceptions.ClientException;
 import com.njupt.entity.Student;
+import com.njupt.service.MessageService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,5 +83,33 @@ public class StudentTest {
         List<Student> students = studentDao.getAllStudentRecords();
         for(Student s : students)
             System.out.println(s);
+    }
+
+    /**
+     * Created by 越 on 2018/5/9.
+     */
+    @RunWith(SpringJUnit4ClassRunner.class)
+    @ContextConfiguration("classpath:/spring/applicationContext-service.xml")
+    public static class MessageServiceTest {
+        private MessageService messageService;
+
+        @Autowired
+        public void setMessageService(MessageService messageService) {
+            this.messageService = messageService;
+        }
+
+        public void testSendSms() throws ClientException, InterruptedException {
+            Student student = new Student();
+            student.setTelNumber("15195881862");
+            student.setName("意谦");
+            SendSmsResponse response = messageService.sendSms(student);
+            System.out.println("短信接口返回的数据----------------");
+            System.out.println("Code=" + response.getCode());
+            System.out.println("Message=" + response.getMessage());
+            System.out.println("RequestId=" + response.getRequestId());
+            System.out.println("BizId=" + response.getBizId());
+
+            Thread.sleep(3000L);
+        }
     }
 }
