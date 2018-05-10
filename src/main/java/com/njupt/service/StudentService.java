@@ -63,16 +63,6 @@ public class StudentService {
     public JSONArray getLostCardListInJSON() {
         List<Student> students = studentDao.getAllStudentRecords();
         JSONArray jsonArrayStudents = new JSONArray();
-//        for(Student s : students) {
-//            JSONObject jsonObjectStudent = new JSONObject();
-//            jsonObjectStudent.put("name", s.getName());
-//            jsonObjectStudent.put("college", s.getCollege());
-//            jsonObjectStudent.put("major", s.getMajor());
-//            jsonObjectStudent.put("user_Id", s.getUserId());
-//            jsonObjectStudent.put("mac_num", s.getMacNumber());
-//            jsonObjectStudent.put("isLost", s.isLost());
-//            jsonArrayStudents.add()
-//        }
         for(Student s : students) {
             jsonArrayStudents.add(s);
         }
