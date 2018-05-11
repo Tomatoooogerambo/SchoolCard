@@ -30,7 +30,7 @@ public class StudentController  {
         return "verifyCard";
     }
 
-    @RequestMapping(value = "check.html")
+    @RequestMapping(value = "verifyCard.html")
     public ModelAndView checkFormByMacNumber(HttpServletRequest request) {
         if(studentService.checkValidMacNumber(request.getParameter("macNumber"))) {
             Student student = studentService.getRecordByMacNuber(request.getParameter("macNumber"));

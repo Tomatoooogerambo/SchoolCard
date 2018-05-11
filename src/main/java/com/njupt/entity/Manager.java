@@ -45,7 +45,6 @@ public class Manager {
     public String toString() {
         StringBuilder managerStr = new StringBuilder();
         managerStr.append("工号：" + getManagerJobNumber() + "\n");
-        managerStr.append("密码：" + getPassword() + "\n");
         managerStr.append("校区：" + getSchoolDistrict() + "\n");
         managerStr.append("位置：" + getPosition());
         return managerStr.toString();
