@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * Created by 越 on 2018/5/3.
@@ -30,15 +31,24 @@ public class StudentController  {
         return "verifyCard";
     }
 
-    @RequestMapping(value = "verifyCard.html")
+    @RequestMapping(value = "verifyCard.html" )
     public ModelAndView checkFormByMacNumber(HttpServletRequest request) {
         if(studentService.checkValidMacNumber(request.getParameter("macNumber"))) {
             Student student = studentService.getRecordByMacNuber(request.getParameter("macNumber"));
             request.getSession().setAttribute("student", student);
+            request.getSession().setAttribute("flag","single");
             return new ModelAndView("searchResult");
         }else{
-            return new ModelAndView("verifyCard","error","卡号不存在");
+            return new ModelAndView("verifyCard","error","暂未由此卡的信息，请重试");
         }
+    }
+
+    @RequestMapping(value = "requestForAll.html" )
+    public ModelAndView requestForAll(HttpServletRequest request) {
+        List<Student> students = studentService.getAllStudents();
+        request.getSession().setAttribute("students", students);
+        request.getSession().setAttribute("flag","all");
+        return  new ModelAndView("searchResult");
     }
 
 }

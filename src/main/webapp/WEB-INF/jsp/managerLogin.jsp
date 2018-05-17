@@ -13,6 +13,9 @@
     <title>管理员界面</title>
 </head>
 <body>
+    <c:if test="${!empty wrongInfo}">
+     <c:out value="${wrongInfo}"></c:out>
+    </c:if>
     <div class="container">
         <form action="<c:url value="managerLogin.html"/>" method="post">
             管理员账号<input type="text" name="jobNumber"/><br>

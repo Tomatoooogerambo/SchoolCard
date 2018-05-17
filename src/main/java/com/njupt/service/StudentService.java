@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,12 +15,9 @@ import java.util.List;
  */
 @Service
 public class StudentService {
+    @Autowired
     private StudentDao studentDao;
 
-    @Autowired
-    public void setStudentDao(StudentDao studentDao) {
-        this.studentDao = studentDao;
-    }
 
     public boolean checkValidId(String userId) {
         return studentDao.getMatchNumberByUserId(userId);
@@ -55,6 +53,13 @@ public class StudentService {
     }
 
     /**
+     * 将丢失的卡标记为已经找回状态
+     * @param userId
+     */
+    public void setCardFindBack(String userId) {
+            studentDao.setCardFindBack(userId);
+    }
+    /**
      * 获取表中所有记录
      * 分装成JSON格式
      * @return
@@ -69,7 +74,32 @@ public class StudentService {
         return jsonArrayStudents;
     }
 
-    public Student getStudentRecordByMacNumber(String macNumber) {
-        return studentDao.getRecordByMacNumber(macNumber);
+    /**
+     * 得到所有标记为丢失的校园卡记录
+     * @return
+     */
+    public List<Student> getAllStudents() {
+        List<Student> students = new ArrayList<>();
+        List<Student> allStudents = studentDao.getAllStudentRecords();
+        for(Student s : allStudents) {
+            if(s.isLost() == true)
+                students.add(s);
+        }
+        return students;
     }
+
+    public Student getStudentLostRecord(String num) {
+        Student student = null;
+        if(studentDao.getMatchNumberByMacNum(num)) {
+            student = studentDao.getRecordByMacNumber(num);
+            return student.isLost() == true ? student : null;
+        }
+
+        if(studentDao.getMatchNumberByUserId(num)) {
+            student = studentDao.getRecordByUserId(num);
+            return student.isLost() == true ? student : null;
+        }
+        return student;
+    }
+
 }

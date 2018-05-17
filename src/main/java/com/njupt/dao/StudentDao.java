@@ -43,6 +43,9 @@ public class StudentDao {
                                                             " SET isLost=1 WHERE user_Id=?";
 
     private final static String SELECT_ALL_STUDENTS = "SELECT * FROM stu_info ";
+
+    private final static String UPDATE_STATUS_FINDBACK = " UPDATE stu_info" +
+                                                            " SET isLost=0 WHERE user_Id=?";
     /**
      * 按照丢失的状态查询数量
      * @param isLost
@@ -165,5 +168,9 @@ public class StudentDao {
                 }
         );
         return students;
+    }
+
+    public void setCardFindBack(String num) {
+        jdbcTemplate.update(UPDATE_STATUS_FINDBACK, new Object[]{num});
     }
 }
